@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace RecordBookWindows.ViewModel
@@ -28,7 +29,11 @@ namespace RecordBookWindows.ViewModel
 
         private void ShowWindow(object obj)
         {
+            var mainWindow = obj as Window;
+
             AddUser addUserWin = new AddUser();
+            addUserWin.Owner = mainWindow;
+            addUserWin.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             addUserWin.Show();
         }
     }
