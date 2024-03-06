@@ -1,4 +1,5 @@
-﻿using RecordBookWindows.ViewModel;
+﻿using RecordBookWindows.Models;
+using RecordBookWindows.ViewModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +23,17 @@ namespace RecordBookWindows.Views
             InitializeComponent();
             MainViewModel mainViewMode = new MainViewModel();
             this.DataContext = mainViewMode;
+        }
+
+        private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UserList.Items.Filter = FilterMethod;
+        }
+
+        private bool FilterMethod(object obj)
+        {
+            var user = (User)obj;
+            return user.Name.Contains(FilterTextBox.Text, StringComparison.OrdinalIgnoreCase);
         }
     }
 }
